@@ -1,9 +1,13 @@
-[gd_scene load_steps=15 format=4 uid="uid://dat0q8nemfc56"]
+[gd_scene load_steps=19 format=4 uid="uid://dat0q8nemfc56"]
 
+[ext_resource type="PackedScene" uid="uid://t6llnw4k52ac" path="res://audio/music/on_the_farm_music.tscn" id="1_iwr0g"]
 [ext_resource type="TileSet" uid="uid://b5ak557w8yoq3" path="res://tileSets/game_tile_set.tres" id="1_ksju7"]
+[ext_resource type="PackedScene" uid="uid://v6e2knx4433b" path="res://scenes/components/save_level_data_component.tscn" id="1_wtwp4"]
 [ext_resource type="PackedScene" uid="uid://cky4852e5okjh" path="res://scenes/houses/large_house.tscn" id="2_6iamk"]
 [ext_resource type="PackedScene" uid="uid://cyyi3tb4aufcx" path="res://scenes/components/field_cursor_component.tscn" id="3_dga24"]
+[ext_resource type="PackedScene" uid="uid://c7d58t2oub25k" path="res://scenes/components/save_data_component.tscn" id="3_iwr0g"]
 [ext_resource type="PackedScene" uid="uid://clab7fvlq0w5v" path="res://scenes/characters/chicken/chicken.tscn" id="3_nsrm0"]
+[ext_resource type="Resource" uid="uid://bhm4qq4ch4ny7" path="res://resources/tilemap_layer_data_resource.tres" id="4_bahl2"]
 [ext_resource type="Script" uid="uid://d1poedoktytx3" path="res://scenes/components/field_cursor_component.gd" id="4_qxy0u"]
 [ext_resource type="PackedScene" uid="uid://bk8cwxhkcj1qj" path="res://scenes/characters/cow/cow.tscn" id="4_x42e6"]
 [ext_resource type="PackedScene" uid="uid://jsbxtjilk7ue" path="res://scenes/characters/guide/guide.tscn" id="5_6761a"]
@@ -28,6 +32,10 @@ source_geometry_mode = 2
 [node name="Level1" type="Node2D"]
 y_sort_enabled = true
 
+[node name="OnTheFarmMusic" parent="." instance=ExtResource("1_iwr0g")]
+
+[node name="SaveLevelDataComponent" parent="." instance=ExtResource("1_wtwp4")]
+
 [node name="GameTileMap" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -42,6 +50,9 @@ tile_set = ExtResource("1_ksju7")
 
 [node name="TiledSoil" type="TileMapLayer" parent="GameTileMap"]
 tile_set = ExtResource("1_ksju7")
+
+[node name="SaveDataComponent" parent="GameTileMap/TiledSoil" instance=ExtResource("3_iwr0g")]
+save_data_resource = ExtResource("4_bahl2")
 
 [node name="Undergrowth" type="TileMapLayer" parent="GameTileMap"]
 tile_map_data = PackedByteArray("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")
