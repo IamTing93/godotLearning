@@ -1,0 +1,33 @@
+[gd_scene load_steps=17 format=3 uid="uid://ddjd5l0fjbdfl"]
+
+[ext_resource type="PackedScene" uid="uid://bentwtqcbxa87" path="res://scenes/ui/inventory_panel.tscn" id="1_xsj8l"]
+[ext_resource type="PackedScene" uid="uid://dhj0j70rxe4o3" path="res://scenes/modules/inventory.tscn" id="2_j7r61"]
+[ext_resource type="Script" uid="uid://ebrnfr8pn11h" path="res://resources/items/item.gd" id="2_lfbed"]
+[ext_resource type="Resource" uid="uid://cthkd3xrw8iu0" path="res://resources/items/axe_1.tres" id="3_44xbs"]
+[ext_resource type="PackedScene" uid="uid://ea3l6l2pfy2l" path="res://scenes/ui/gm_command_panel.tscn" id="3_pnpin"]
+[ext_resource type="Resource" uid="uid://du5vm50aoupdp" path="res://resources/items/egg_1.tres" id="4_0x1tk"]
+[ext_resource type="Resource" uid="uid://cu383ktv6ilub" path="res://resources/items/necklace_2.tres" id="5_4niqk"]
+[ext_resource type="Resource" uid="uid://bl37hsnkqitcj" path="res://resources/items/meet_4.tres" id="6_y6pnn"]
+[ext_resource type="Resource" uid="uid://cpmbtuaxgi434" path="res://resources/items/helmet_2.tres" id="7_vel2r"]
+[ext_resource type="Resource" uid="uid://vplx2x44n0hn" path="res://resources/items/cuirass_2.tres" id="8_aao4k"]
+[ext_resource type="Resource" uid="uid://de5hkrm5awahh" path="res://resources/items/shoes_1.tres" id="9_fscom"]
+[ext_resource type="Resource" uid="uid://ciqbpwalhtax8" path="res://resources/items/ring_2.tres" id="10_t00cu"]
+[ext_resource type="Resource" uid="uid://2n0f1gw62p17" path="res://resources/items/pants_2.tres" id="11_8m4so"]
+[ext_resource type="Resource" uid="uid://csghxhc5ihc0a" path="res://resources/items/potion_red_1.tres" id="12_llb0v"]
+[ext_resource type="Resource" uid="uid://c431a1gvl3fx7" path="res://resources/items/potion_blue_1.tres" id="13_0x1tk"]
+[ext_resource type="Resource" uid="uid://bi5no81k3l53" path="res://resources/items/wood_1.tres" id="14_4niqk"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Inventory" parent="." instance=ExtResource("2_j7r61")]
+items = Array[ExtResource("2_lfbed")]([ExtResource("3_44xbs"), ExtResource("4_0x1tk"), ExtResource("5_4niqk"), ExtResource("6_y6pnn"), ExtResource("7_vel2r"), ExtResource("8_aao4k"), ExtResource("9_fscom"), ExtResource("10_t00cu"), ExtResource("11_8m4so"), ExtResource("12_llb0v"), ExtResource("13_0x1tk"), ExtResource("14_4niqk")])
+
+[node name="InventoryPanel" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("1_xsj8l")]
+inventory = NodePath("../Inventory")
+
+[node name="GmCommandPanel" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("3_pnpin")]
+offset_left = -1.0
+offset_top = 438.0
+offset_right = 599.0
+offset_bottom = 469.0
+inventory = NodePath("../Inventory")

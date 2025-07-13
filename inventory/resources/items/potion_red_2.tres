@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://j0sudactju0k"]
+
+[ext_resource type="Texture2D" uid="uid://b083sedpjajl3" path="res://assets/icons.png" id="1_1vlxu"]
+[ext_resource type="Script" uid="uid://ebrnfr8pn11h" path="res://resources/items/item.gd" id="2_ghdbq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir3vk"]
+atlas = ExtResource("1_1vlxu")
+region = Rect2(128, 288, 32, 32)
+
+[resource]
+script = ExtResource("2_ghdbq")
+item_name = "PotionRed_2"
+item_icon = SubResource("AtlasTexture_ir3vk")
+description = ""
+max_stack = 20
+quantity = 1
+item_type = 2
+attributes = {}
+metadata/_custom_type_script = "uid://ebrnfr8pn11h"

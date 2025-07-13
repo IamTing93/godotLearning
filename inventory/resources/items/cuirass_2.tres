@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=4 format=3 uid="uid://vplx2x44n0hn"]
+
+[ext_resource type="Texture2D" uid="uid://b083sedpjajl3" path="res://assets/icons.png" id="1_2ao0k"]
+[ext_resource type="Script" uid="uid://qa5d4hgthx85" path="res://resources/items/equipment.gd" id="2_xmk5g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvefe"]
+atlas = ExtResource("1_2ao0k")
+region = Rect2(128, 224, 32, 32)
+
+[resource]
+script = ExtResource("2_xmk5g")
+equipment_type = 2
+item_name = "Cuirass_2"
+item_icon = SubResource("AtlasTexture_qvefe")
+description = ""
+max_stack = 1
+quantity = 1
+item_type = 1
+attributes = {}
+metadata/_custom_type_script = "uid://ebrnfr8pn11h"

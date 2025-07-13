@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=2 format=3 uid="uid://5olr4n7344u2"]
+
+[ext_resource type="Script" uid="uid://qa5d4hgthx85" path="res://resources/items/equipment.gd" id="1_r1xxy"]
+
+[resource]
+script = ExtResource("1_r1xxy")
+equipment_type = 0
+item_name = ""
+description = ""
+max_stack = 1
+quantity = 0
+item_type = 2
+attributes = {}

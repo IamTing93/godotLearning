@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=4 format=3 uid="uid://2n0f1gw62p17"]
+
+[ext_resource type="Texture2D" uid="uid://b083sedpjajl3" path="res://assets/icons.png" id="1_ux7ek"]
+[ext_resource type="Script" uid="uid://qa5d4hgthx85" path="res://resources/items/equipment.gd" id="2_mhb4p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvefe"]
+atlas = ExtResource("1_ux7ek")
+region = Rect2(352, 224, 32, 32)
+
+[resource]
+script = ExtResource("2_mhb4p")
+equipment_type = 3
+item_name = "Pants_2"
+item_icon = SubResource("AtlasTexture_qvefe")
+description = ""
+max_stack = 1
+quantity = 1
+item_type = 1
+attributes = {}
+metadata/_custom_type_script = "uid://ebrnfr8pn11h"

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqtsxyh6bfe1u"]
+
+[ext_resource type="PackedScene" uid="uid://dhj0j70rxe4o3" path="res://scenes/modules/inventory.tscn" id="1_us46y"]
+[ext_resource type="PackedScene" uid="uid://ea3l6l2pfy2l" path="res://scenes/ui/gm_command_panel.tscn" id="2_us46y"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Inventory" parent="." instance=ExtResource("1_us46y")]
+
+[node name="GmCommandPanel" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("2_us46y")]
+inventory = NodePath("../Inventory")

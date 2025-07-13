@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=4 format=3 uid="uid://c6yd8tvr7jehp"]
+
+[ext_resource type="Texture2D" uid="uid://b083sedpjajl3" path="res://assets/icons.png" id="1_5gxjm"]
+[ext_resource type="Script" uid="uid://qa5d4hgthx85" path="res://resources/items/equipment.gd" id="2_3vwg5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvefe"]
+atlas = ExtResource("1_5gxjm")
+region = Rect2(64, 224, 32, 32)
+
+[resource]
+script = ExtResource("2_3vwg5")
+equipment_type = 1
+item_name = "Helmet_1"
+item_icon = SubResource("AtlasTexture_qvefe")
+description = ""
+max_stack = 1
+quantity = 1
+item_type = 1
+attributes = {}
+metadata/_custom_type_script = "uid://ebrnfr8pn11h"

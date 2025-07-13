@@ -1,0 +1,10 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhj0j70rxe4o3"]
+
+[ext_resource type="Script" uid="uid://pwyie8ji3cfs" path="res://scenes/modules/inventory.gd" id="1_1wqdp"]
+[ext_resource type="Script" uid="uid://ebrnfr8pn11h" path="res://resources/items/item.gd" id="2_sx0x3"]
+[ext_resource type="Resource" uid="uid://du5vm50aoupdp" path="res://resources/items/egg_1.tres" id="3_vjyiv"]
+[ext_resource type="Resource" uid="uid://cthkd3xrw8iu0" path="res://resources/items/axe_1.tres" id="4_5gfum"]
+
+[node name="Inventory" type="Node"]
+script = ExtResource("1_1wqdp")
+items = Array[ExtResource("2_sx0x3")]([ExtResource("4_5gfum"), ExtResource("3_vjyiv")])
