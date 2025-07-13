@@ -1,0 +1,31 @@
+[gd_scene load_steps=17 format=3 uid="uid://bmqe31j41jwcq"]
+
+[ext_resource type="PackedScene" uid="uid://dhj0j70rxe4o3" path="res://scenes/modules/inventory.tscn" id="1_ns1me"]
+[ext_resource type="Script" uid="uid://ebrnfr8pn11h" path="res://resources/items/item.gd" id="2_xn2nf"]
+[ext_resource type="Resource" uid="uid://cthkd3xrw8iu0" path="res://resources/items/axe_1.tres" id="3_6drbh"]
+[ext_resource type="Resource" uid="uid://du5vm50aoupdp" path="res://resources/items/egg_1.tres" id="4_beevc"]
+[ext_resource type="Resource" uid="uid://cu383ktv6ilub" path="res://resources/items/necklace_2.tres" id="5_fqwcf"]
+[ext_resource type="Resource" uid="uid://bl37hsnkqitcj" path="res://resources/items/meet_4.tres" id="6_biixg"]
+[ext_resource type="Resource" uid="uid://cpmbtuaxgi434" path="res://resources/items/helmet_2.tres" id="7_pvqoa"]
+[ext_resource type="Resource" uid="uid://vplx2x44n0hn" path="res://resources/items/cuirass_2.tres" id="8_armwo"]
+[ext_resource type="Resource" uid="uid://de5hkrm5awahh" path="res://resources/items/shoes_1.tres" id="9_rycir"]
+[ext_resource type="Resource" uid="uid://ciqbpwalhtax8" path="res://resources/items/ring_2.tres" id="10_r51np"]
+[ext_resource type="Resource" uid="uid://2n0f1gw62p17" path="res://resources/items/pants_2.tres" id="11_vesdx"]
+[ext_resource type="Resource" uid="uid://csghxhc5ihc0a" path="res://resources/items/potion_red_1.tres" id="12_8m5mu"]
+[ext_resource type="Resource" uid="uid://c431a1gvl3fx7" path="res://resources/items/potion_blue_1.tres" id="13_mne3p"]
+[ext_resource type="Resource" uid="uid://bi5no81k3l53" path="res://resources/items/wood_1.tres" id="14_jonv7"]
+[ext_resource type="PackedScene" uid="uid://bentwtqcbxa87" path="res://scenes/ui/inventory_panel.tscn" id="15_1f3ha"]
+[ext_resource type="PackedScene" uid="uid://b4rpltb3pnfho" path="res://scenes/ui/opening_inventory_margin_container.tscn" id="16_ns1me"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Inventory" parent="." instance=ExtResource("1_ns1me")]
+items = Array[ExtResource("2_xn2nf")]([ExtResource("3_6drbh"), ExtResource("4_beevc"), ExtResource("5_fqwcf"), ExtResource("6_biixg"), ExtResource("7_pvqoa"), ExtResource("8_armwo"), ExtResource("9_rycir"), ExtResource("10_r51np"), ExtResource("11_vesdx"), ExtResource("12_8m5mu"), ExtResource("13_mne3p"), ExtResource("14_jonv7")])
+
+[node name="InventoryPanel" parent="." node_paths=PackedStringArray("inventory", "opening_inventory_button") instance=ExtResource("15_1f3ha")]
+visible = false
+inventory = NodePath("../Inventory")
+opening_inventory_button = NodePath("../OpeningInventoryMarginContainer")
+
+[node name="OpeningInventoryMarginContainer" parent="." node_paths=PackedStringArray("inventory_panel") instance=ExtResource("16_ns1me")]
+inventory_panel = NodePath("../InventoryPanel")

@@ -89,7 +89,7 @@ text = "背包"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="ClosingInventoryButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -357,6 +357,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ClosingInventoryButton" to="." method="_on_closing_inventory_button_pressed"]
 [connection signal="tab_changed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/TabBar" to="." method="_on_tab_bar_tab_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/DecomposingButton" to="." method="_on_decomposing_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PackingButton" to="." method="_on_packing_button_pressed"]

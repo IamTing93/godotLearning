@@ -5,6 +5,9 @@ const ITEM_SLOT_TSCN = preload("res://scenes/ui/item_slot.tscn")
 ## 库存逻辑实体
 @export var inventory: Inventory
 
+## 打开背包按钮
+@export var opening_inventory_button: OpeningInventoryMarginContainer
+
 ## 当前选中的类型
 var current_category: int = Item.ItemType.NONE
 
@@ -163,3 +166,10 @@ func _on_decomposing_button_pressed() -> void:
 
 func _on_packing_button_pressed() -> void:
 	inventory.pack_items()
+
+
+func _on_closing_inventory_button_pressed() -> void:
+	if opening_inventory_button == null:
+		return
+	opening_inventory_button.show()
+	self.hide()
