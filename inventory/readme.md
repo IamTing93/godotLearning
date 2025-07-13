@@ -9,16 +9,27 @@
 ## 项目结构
 
 +---.godot
+
 +---assets  						-- 项目资产元数据
+
 +---resources					 -- 项目用到的tres资源
+
 |   +---equipment_slots
+
 |   \---items
+
 +---scenes						 -- 项目场景
+
 |   +---components             -- 通用组件
+
 |   +---modules				   -- 模块
+
 |   +---objects					 -- 可复用对象
+
 |   +---test						   -- 测试场景
+
 |   \---ui							    -- ui界面相关
+
 \---scripts							-- 全局脚本
 
 ## 实现思路
