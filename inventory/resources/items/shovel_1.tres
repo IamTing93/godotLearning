@@ -10,7 +10,7 @@ region = Rect2(96, 320, 32, 32)
 [resource]
 script = ExtResource("2_bbnk6")
 equipment_type = 6
-item_name = "shovel_1"
+item_name = "Shovel_1"
 item_icon = SubResource("AtlasTexture_qvefe")
 description = ""
 max_stack = 1

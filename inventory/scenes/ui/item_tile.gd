@@ -3,6 +3,8 @@ class_name ItemTile extends MarginContainer
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var label: Label = $Label
 
+var tooltip_scn = preload("res://scenes/ui/tooltip_panel.tscn")
+
 ## 当前物品
 var current_item: Item = null :
 	set = set_item
@@ -21,3 +23,10 @@ func set_item(item: Item) -> void:
 		label.hide()
 	else:
 		label.show()
+
+func _make_custom_tooltip(_for_text: String) -> Object:
+	if current_item != null:
+		var tooltip: TooltipPanel = tooltip_scn.instantiate()
+		tooltip.display_tooltip(current_item)
+		return tooltip
+	return null

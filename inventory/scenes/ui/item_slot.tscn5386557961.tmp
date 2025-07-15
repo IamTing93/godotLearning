@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cogta850vi4o2"]
+
+[ext_resource type="Script" uid="uid://cq3a1aqo45pvf" path="res://scenes/ui/item_slot.gd" id="1_pdajm"]
+[ext_resource type="Texture2D" uid="uid://wsupf8cja1rh" path="res://assets/GUI.png" id="1_uw4km"]
+[ext_resource type="PackedScene" uid="uid://daod1lpdaivef" path="res://scenes/ui/item_tile.tscn" id="2_obwa2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obwa2"]
+atlas = ExtResource("1_uw4km")
+region = Rect2(81, 97, 30, 30)
+
+[node name="ItemSlot" type="MarginContainer" groups=["item_slots"]]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 40.0
+offset_bottom = 40.0
+tooltip_text = "test"
+mouse_filter = 0
+script = ExtResource("1_pdajm")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_obwa2")
+patch_margin_left = 5
+patch_margin_top = 7
+patch_margin_right = 5
+patch_margin_bottom = 6
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="ItemTile" parent="." instance=ExtResource("2_obwa2")]
+layout_mode = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

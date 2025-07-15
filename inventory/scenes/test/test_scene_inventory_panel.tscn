@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://bi5no81k3l53" path="res://resources/items/wood_1.tres" id="14_4niqk"]
 
 [node name="Main" type="Node2D"]
+scale = Vector2(1.0013, 1)
 
 [node name="Inventory" parent="." instance=ExtResource("2_j7r61")]
 items = Array[ExtResource("2_lfbed")]([ExtResource("3_44xbs"), ExtResource("4_0x1tk"), ExtResource("5_4niqk"), ExtResource("6_y6pnn"), ExtResource("7_vel2r"), ExtResource("8_aao4k"), ExtResource("9_fscom"), ExtResource("10_t00cu"), ExtResource("11_8m4so"), ExtResource("12_llb0v"), ExtResource("13_0x1tk"), ExtResource("14_4niqk")])

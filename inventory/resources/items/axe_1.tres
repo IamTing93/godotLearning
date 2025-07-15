@@ -3,18 +3,20 @@
 [ext_resource type="Texture2D" uid="uid://b083sedpjajl3" path="res://assets/icons.png" id="1_wwrhn"]
 [ext_resource type="Script" uid="uid://qa5d4hgthx85" path="res://resources/items/equipment.gd" id="2_5h8hl"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qvefe"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwrhn"]
 atlas = ExtResource("1_wwrhn")
 region = Rect2(32, 320, 32, 32)
 
 [resource]
 script = ExtResource("2_5h8hl")
 equipment_type = 6
-item_name = "axe_1"
-item_icon = SubResource("AtlasTexture_qvefe")
-description = ""
+item_name = "铁斧子"
+item_icon = SubResource("AtlasTexture_wwrhn")
+description = "平平无奇的铁制斧子"
 max_stack = 1
 quantity = 1
 item_type = 1
-attributes = {}
+attributes = {
+"攻击力": 5
+}
 metadata/_custom_type_script = "uid://ebrnfr8pn11h"

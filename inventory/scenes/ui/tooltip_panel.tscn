@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdh65of3po5kp"]
+
+[ext_resource type="Script" uid="uid://kx3byhlag4dl" path="res://scenes/ui/tooltip_panel.gd" id="1_52hd1"]
+[ext_resource type="Texture2D" uid="uid://m0n2lv1wq6i6" path="res://assets/GUI_4x.png" id="1_p03s3"]
+[ext_resource type="PackedScene" uid="uid://cq8xd3h0h6tqb" path="res://scenes/ui/attribute_panel.tscn" id="2_5fejo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fejo"]
+atlas = ExtResource("1_p03s3")
+region = Rect2(26, 39, 48, 28)
+
+[node name="TooltipPanel" type="MarginContainer"]
+custom_minimum_size = Vector2(200, 100)
+offset_right = 200.0
+offset_bottom = 130.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("1_52hd1")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5fejo")
+region_rect = Rect2(10, 3, 27, 19)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ItemName" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.407843, 0.854902, 0.337255, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "生命药水"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.567564, 0.780923, 0.798405, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 17
+text = "提炼七七四十九天炼制而成的神水"
+autowrap_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AttributeSetContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AttributePanel" parent="MarginContainer/VBoxContainer/MarginContainer3/AttributeSetContainer" instance=ExtResource("2_5fejo")]
+layout_mode = 2
