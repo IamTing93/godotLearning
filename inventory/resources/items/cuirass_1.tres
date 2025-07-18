@@ -10,11 +10,13 @@ region = Rect2(192, 224, 32, 32)
 [resource]
 script = ExtResource("2_ptpwc")
 equipment_type = 2
-item_name = "Cuirass_1"
+item_name = "皮制胸甲"
 item_icon = SubResource("AtlasTexture_qvefe")
-description = ""
+description = "使用野兽皮制作的胸甲"
 max_stack = 1
 quantity = 1
 item_type = 1
-attributes = {}
+attributes = {
+"防御力": 3
+}
 metadata/_custom_type_script = "uid://ebrnfr8pn11h"

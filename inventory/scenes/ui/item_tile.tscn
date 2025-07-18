@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bui7nqdtk7p0g" path="res://scenes/ui/item_tile.gd" id="1_7anee"]
 
 [node name="ItemTile" type="MarginContainer"]
+custom_minimum_size = Vector2(64, 64)
 tooltip_text = "test"
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5

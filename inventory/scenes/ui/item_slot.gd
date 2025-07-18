@@ -7,6 +7,7 @@ var index: int = 0
 @onready var background: NinePatchRect = $NinePatchRect
 @onready var color_rect: ColorRect = $ColorRect
 var current_item: Item
+var inventory: Inventory
 
 signal mouse_button_left_clicked
 signal mouse_button_right_clicked
@@ -41,3 +42,23 @@ func selected() -> void:
 ## 物品槽取消选择
 func disselected() -> void:
 	color_rect.visible = false
+	
+
+func _get_drag_data(_at_position: Vector2) -> Item:
+	var dragging_item = current_item
+	var preview = item_tile.duplicate() 
+	inventory.remove_item(index)
+	set_drag_preview(preview)
+	return dragging_item
+
+
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	var item = data as Item
+	if self is EquipmentSlot:
+		return inventory.can_equip(item, self.equipment_slot_name)
+	return inventory.can_add_item_to_slot(item, index)
+
+
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	var item = data as Item
+	inventory.add_item_to_slot(item, index)

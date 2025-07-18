@@ -11,6 +11,10 @@ const ITEM_SLOT_TSCN = preload("res://scenes/ui/item_slot.tscn")
 ## 当前选中的类型
 var current_category: int = Item.ItemType.NONE
 
+## 拖动的物品
+var dragging_item: Item
+	
+
 ## 当前选中的物品槽索引
 var selected_item_slot_index: int = 0:
 	set(index):
@@ -48,6 +52,7 @@ func init() -> void:
 		slot.mouse_button_left_clicked.connect(on_item_slot_selected.bind(index))
 		slot.mouse_button_right_clicked.connect(on_use_item.bind(slot))
 		slot.mouse_button_right_clicked.connect(on_item_slot_selected.bind(index))
+		slot.inventory = inventory
 		index += 1
 	selected_item_slot_index = 0
 	update_item_slots_display()
@@ -58,6 +63,7 @@ func init() -> void:
 	for slot in current_equipment_slots:
 		slot.index = index
 		slot.mouse_button_right_clicked.connect(on_unequip_item.bind(slot))
+		slot.inventory = inventory
 		index += 1
 	update_equipment_slots_display()
 
@@ -173,3 +179,14 @@ func _on_closing_inventory_button_pressed() -> void:
 		return
 	opening_inventory_button.show()
 	self.hide()
+	
+
+## 根据本地坐标获取物品槽
+func get_item_slot_from_position(local_position: Vector2) -> ItemSlot:
+	var slots: Array[ItemSlot] = get_item_slots()
+	## 遍历所有物品槽，判断坐标是否落在物品槽中
+	for slot in slots:
+		var slot_rect: Rect2 = Rect2(slot.position, slot.size)
+		if slot_rect.has_point(local_position):
+			return slot
+	return null

@@ -45,11 +45,32 @@ func add_item(item: Item) -> bool:
 			if item.is_empty():
 				return true
 	## 遍历完毕后还有剩余，添加到空位置
-	return add_item_to_empty_entity(item) or has_merged
+	return add_item_to_empty_slot(item) or has_merged
+	
+
+## 是否能添加物品到指定位置的物品槽
+func can_add_item_to_slot(item: Item, index: int) -> bool:
+	if 0 > index or index >= capacity:
+		return false
+	if items[index] != null:
+		return !items[index].is_max_stack() and items[index].is_same_item(item)
+	return true
+	
+
+## 添加物品到指定位置的物品槽
+func add_item_to_slot(item: Item, index: int) -> bool:
+	if !can_add_item_to_slot(item, index):
+		return false
+	if items[index] == null:
+		items[index] = item
+		item_changed.emit()
+		return true
+	var has_merged = items[index].merge(item)
+	return item.is_empty() or (add_item_to_empty_slot(item) or has_merged)
 
 
 ## 添加物品到空位置
-func add_item_to_empty_entity(item: Item) -> bool:
+func add_item_to_empty_slot(item: Item) -> bool:
 	if is_reached_capacity():
 		push_warning("Up to capacity when add item: {0}, quantity: {1}".format([item.item_name, item.quantity]))
 		return false
@@ -152,13 +173,25 @@ func equip_item(equipment: Equipment) -> bool:
 	return equip_item_to_slot(equipment, slot.equitment_slot_name)
 
 
+## 指定道具是否能装备
+func can_equip(item: Item, equipment_slot_name: String) -> bool:
+	if !(item is Equipment):
+		return false
+	var equipment: Equipment = item as Equipment
+	var equipment_slot: EquipmentSlotStub = equitment_slot_stubs.get(equipment_slot_name)
+	if equipment_slot == null or equipment == null:
+		return false
+	return equipment_slot.equipment == null and equipment_slot.equipment_slot_type == equipment.equipment_type
+
+
 ## 装备道具到指定的装备槽
 func equip_item_to_slot(equipment: Equipment, equipment_slot_name: String) -> bool:
+	if !can_equip(equipment, equipment_slot_name):
+		return false
 	# 从物品槽中移除道具
 	remove_item(items.find(equipment))
 	var slot: EquipmentSlotStub = equitment_slot_stubs.get(equipment_slot_name)
-	if slot != null and slot.equipment != null and !add_item_to_empty_entity(slot.equipment):
-		return false
+	add_item_to_empty_slot(slot.equipment)
 	slot.equipment = equipment
 	equipment_changed.emit(slot.equitment_slot_name)
 	return true
@@ -167,7 +200,7 @@ func equip_item_to_slot(equipment: Equipment, equipment_slot_name: String) -> bo
 ## 卸载装备
 func unequip_item(equipment_slot_name: String) -> bool:
 	var slot: EquipmentSlotStub = equitment_slot_stubs.get(equipment_slot_name)
-	if slot != null and slot.equipment != null and !add_item_to_empty_entity(slot.equipment):
+	if slot != null and slot.equipment != null and !add_item_to_empty_slot(slot.equipment):
 		return false
 	slot.equipment = null
 	equipment_changed.emit(slot.equitment_slot_name)

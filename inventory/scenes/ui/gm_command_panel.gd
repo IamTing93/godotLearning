@@ -29,7 +29,7 @@ func add_item(item_name: String, quantity: String) -> void:
 	if item == null:
 		push_error("Can not found item by name: ", item_name)
 		return
-	inventory.add_item_to_empty_entity(item)
+	inventory.add_item_to_empty_slot(item)
 
 
 ## 创建物品
