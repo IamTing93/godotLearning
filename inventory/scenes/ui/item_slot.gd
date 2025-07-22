@@ -44,21 +44,37 @@ func disselected() -> void:
 	color_rect.visible = false
 	
 
-func _get_drag_data(_at_position: Vector2) -> Item:
-	var dragging_item = current_item
+func _get_drag_data(_at_position: Vector2) -> ItemSlot:
+	if current_item == null:
+		return null
 	var preview = item_tile.duplicate() 
-	inventory.remove_item(index)
 	set_drag_preview(preview)
-	return dragging_item
+	return self
 
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	var item = data as Item
+	var slot = data as ItemSlot
 	if self is EquipmentSlot:
-		return inventory.can_equip(item, self.equipment_slot_name)
-	return inventory.can_add_item_to_slot(item, index)
+		return inventory.can_equip(slot.current_item, self.equipment_slot_name)
+	return true
 
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	var item = data as Item
-	inventory.add_item_to_slot(item, index)
+	var source_slot = data as ItemSlot
+	var source_item = null
+	var target_item = null
+	if source_slot is EquipmentSlot:
+		source_item = inventory.unequip_item(source_slot.equipment_slot_name)
+	else:
+		source_item = inventory.remove_item(source_slot.index)
+	if self is EquipmentSlot:
+		target_item = inventory.unequip_item(self.equipment_slot_name)
+		inventory.equip_item_to_slot(source_item, self.equipment_slot_name)
+	else:
+		target_item = inventory.remove_item(index)
+		inventory.add_item_to_slot(source_item, index)
+	if source_slot is EquipmentSlot:
+		inventory.equip_item_to_slot(target_item, source_slot.equipment_slot_name)
+	else:
+		inventory.add_item_to_slot(target_item, source_slot.index)
+	

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d04pme516jqq5"]
+
+[ext_resource type="Texture2D" uid="uid://dmfsfum2ja3mh" path="res://godot-animation-source/Background/BG.jpg" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://b4qaqed708xd5" path="res://player.tscn" id="2_h2yge"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Map" type="Sprite2D" parent="."]
+texture = ExtResource("1_0xm2m")
+
+[node name="Player" parent="." instance=ExtResource("2_h2yge")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]

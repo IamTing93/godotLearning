@@ -44,3 +44,4 @@ func set_item(item: Item) -> void:
 		default_icon.show()
 	else:
 		default_icon.hide()
+		

@@ -163,7 +163,9 @@ func on_use_item(slot: ItemSlot) -> void:
 
 
 func on_unequip_item(slot: EquipmentSlot) -> void:
-	inventory.unequip_item(slot.equipment_slot_name)
+	if inventory.can_unequip_item(slot.equipment_slot_name):
+		var equipment: Equipment = inventory.unequip_item(slot.equipment_slot_name)
+		inventory.add_item_to_empty_slot(equipment)
 
 
 func _on_decomposing_button_pressed() -> void:

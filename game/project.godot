@@ -15,6 +15,10 @@ run/main_scene="uid://tk0sh1hqac8s"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Music="*res://scenes/music.tscn"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

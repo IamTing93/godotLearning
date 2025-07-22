@@ -169,6 +169,8 @@ func use_item(item: Item):
 
 ## 装备道具
 func equip_item(equipment: Equipment) -> bool:
+	if equipment == null:
+		return false
 	var slot = get_equipment_slot(equipment.equipment_type)
 	return equip_item_to_slot(equipment, slot.equitment_slot_name)
 
@@ -181,7 +183,7 @@ func can_equip(item: Item, equipment_slot_name: String) -> bool:
 	var equipment_slot: EquipmentSlotStub = equitment_slot_stubs.get(equipment_slot_name)
 	if equipment_slot == null or equipment == null:
 		return false
-	return equipment_slot.equipment == null and equipment_slot.equipment_slot_type == equipment.equipment_type
+	return equipment_slot.equipment_slot_type == equipment.equipment_type
 
 
 ## 装备道具到指定的装备槽
@@ -197,14 +199,21 @@ func equip_item_to_slot(equipment: Equipment, equipment_slot_name: String) -> bo
 	return true
 
 
-## 卸载装备
-func unequip_item(equipment_slot_name: String) -> bool:
+## 是否能卸载装备
+func can_unequip_item(equipment_slot_name: String) -> bool:
 	var slot: EquipmentSlotStub = equitment_slot_stubs.get(equipment_slot_name)
-	if slot != null and slot.equipment != null and !add_item_to_empty_slot(slot.equipment):
-		return false
+	return slot != null and slot.equipment != null and !is_reached_capacity()
+
+
+## 卸载装备
+func unequip_item(equipment_slot_name: String) -> Equipment:
+	if !can_unequip_item(equipment_slot_name):
+		return null
+	var slot: EquipmentSlotStub = equitment_slot_stubs.get(equipment_slot_name)
+	var equipment: Equipment = slot.equipment
 	slot.equipment = null
 	equipment_changed.emit(slot.equitment_slot_name)
-	return true
+	return equipment
 
 
 ## 根据类型获取装备槽。有空的装备槽就返回空的，没有就返回第一个
