@@ -52,7 +52,9 @@ func init() -> void:
 		slot.mouse_button_left_clicked.connect(on_item_slot_selected.bind(index))
 		slot.mouse_button_right_clicked.connect(on_use_item.bind(slot))
 		slot.mouse_button_right_clicked.connect(on_item_slot_selected.bind(index))
+		slot.dropped_data.connect(on_dropped_data)
 		slot.inventory = inventory
+		slot.inventory_panel = self
 		index += 1
 	selected_item_slot_index = 0
 	update_item_slots_display()
@@ -64,6 +66,7 @@ func init() -> void:
 		slot.index = index
 		slot.mouse_button_right_clicked.connect(on_unequip_item.bind(slot))
 		slot.inventory = inventory
+		slot.inventory_panel = self
 		index += 1
 	update_equipment_slots_display()
 
@@ -166,6 +169,11 @@ func on_unequip_item(slot: EquipmentSlot) -> void:
 	if inventory.can_unequip_item(slot.equipment_slot_name):
 		var equipment: Equipment = inventory.unequip_item(slot.equipment_slot_name)
 		inventory.add_item_to_empty_slot(equipment)
+		(func(): 
+			for item_slot in item_slots:
+				if item_slot.current_item == equipment:
+					selected_item_slot_index = item_slot.index
+		).call_deferred()
 
 
 func _on_decomposing_button_pressed() -> void:
@@ -192,3 +200,9 @@ func get_item_slot_from_position(local_position: Vector2) -> ItemSlot:
 		if slot_rect.has_point(local_position):
 			return slot
 	return null
+
+
+func on_dropped_data(item_slot: ItemSlot) -> void:
+	if item_slot is EquipmentSlot:
+		return
+	selected_item_slot_index = item_slot.index

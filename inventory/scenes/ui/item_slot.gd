@@ -8,9 +8,11 @@ var index: int = 0
 @onready var color_rect: ColorRect = $ColorRect
 var current_item: Item
 var inventory: Inventory
+var inventory_panel: InventoryPanel
 
 signal mouse_button_left_clicked
 signal mouse_button_right_clicked
+signal dropped_data
 
 func _ready() -> void:
 	color_rect.color = Color(0, 0, 0, 0.5)
@@ -45,7 +47,7 @@ func disselected() -> void:
 	
 
 func _get_drag_data(_at_position: Vector2) -> ItemSlot:
-	if current_item == null:
+	if current_item == null || inventory_panel.current_category != Item.ItemType.NONE:
 		return null
 	var preview = item_tile.duplicate() 
 	set_drag_preview(preview)
@@ -54,6 +56,8 @@ func _get_drag_data(_at_position: Vector2) -> ItemSlot:
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	var slot = data as ItemSlot
+	if slot is EquipmentSlot and self.current_item != null:
+		return inventory.can_equip(self.current_item, slot.equipment_slot_name)
 	if self is EquipmentSlot:
 		return inventory.can_equip(slot.current_item, self.equipment_slot_name)
 	return true
@@ -77,4 +81,5 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 		inventory.equip_item_to_slot(target_item, source_slot.equipment_slot_name)
 	else:
 		inventory.add_item_to_slot(target_item, source_slot.index)
+	dropped_data.emit(self)
 	

@@ -45,7 +45,7 @@ func add_item(item: Item) -> bool:
 			if item.is_empty():
 				return true
 	## 遍历完毕后还有剩余，添加到空位置
-	return add_item_to_empty_slot(item) or has_merged
+	return add_item_to_empty_slot(item) != -1 or has_merged
 	
 
 ## 是否能添加物品到指定位置的物品槽
@@ -66,19 +66,19 @@ func add_item_to_slot(item: Item, index: int) -> bool:
 		item_changed.emit()
 		return true
 	var has_merged = items[index].merge(item)
-	return item.is_empty() or (add_item_to_empty_slot(item) or has_merged)
+	return item.is_empty() or (add_item_to_empty_slot(item) != -1 or has_merged)
 
 
 ## 添加物品到空位置
-func add_item_to_empty_slot(item: Item) -> bool:
+func add_item_to_empty_slot(item: Item) -> int:
 	if is_reached_capacity():
 		push_warning("Up to capacity when add item: {0}, quantity: {1}".format([item.item_name, item.quantity]))
-		return false
+		return -1
 	var idx = find_empty_entity_index()
 	items[idx] = item
 	item_size += 1
 	item_changed.emit()
-	return true
+	return idx
 
 
 ## 查找空单元的索引
